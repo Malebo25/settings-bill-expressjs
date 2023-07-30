@@ -57,13 +57,14 @@ app.post("/action", function (req, res) {
   settingsBill.recordAction(req.body.actionType);
   res.redirect("/");
 });
-app.post("/action", function (req, res) {
-  //
+app.get("/actions", function (req, res) {
+  res.render("actions", { actions: settingsBill.actions() });
 });
 
-app.post("/actions/:type", function (req, res) {
+app.get("/actions/:actionType", function (req, res) {
   //helps us display call or sms
-  //
+  const actionType = req.params.actionType;
+  res.render("actions", { actions: settingsBill.actionsFor(actionType) });
 });
 
 const PORT = process.env.PORT || 3002;
