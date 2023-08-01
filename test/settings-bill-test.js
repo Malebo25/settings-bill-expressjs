@@ -2,7 +2,7 @@ import assert from "assert";
 import BillWithSettings from "../settings-bill.js";
 
 describe("settings-bill", function () {
-  const settingsBill = BillWithSettings;
+  const settingsBill = BillWithSettings();
 
   it("should be able to record calls", function () {
     settingsBill.recordAction("call");
@@ -29,7 +29,8 @@ describe("settings-bill", function () {
   });
 
   it("should calculate the right totals", function () {
-    const settingsBill = SettingsBill();
+    const settingsBill = BillWithSettings();
+
     settingsBill.setSettings({
       smsCost: 2.35,
       callCost: 3.35,
@@ -46,7 +47,8 @@ describe("settings-bill", function () {
   });
 
   it("should calculate the right totals for multiple actions", function () {
-    const settingsBill = SettingsBill();
+    const settingsBill = BillWithSettings();
+
     settingsBill.setSettings({
       smsCost: 2.35,
       callCost: 3.35,
@@ -65,7 +67,8 @@ describe("settings-bill", function () {
   });
 
   it("should know when warning level reached", function () {
-    const settingsBill = SettingsBill();
+    const settingsBill = BillWithSettings();
+
     settingsBill.setSettings({
       smsCost: 2.5,
       callCost: 5.0,
@@ -80,7 +83,8 @@ describe("settings-bill", function () {
   });
 
   it("should know when critical level reached", function () {
-    const settingsBill = SettingsBill();
+    const settingsBill = BillWithSettings();
+
     settingsBill.setSettings({
       smsCost: 2.5,
       callCost: 5.0,
