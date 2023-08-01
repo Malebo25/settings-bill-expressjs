@@ -1,6 +1,7 @@
 import express from "express";
 import exphbs from "express-handlebars";
 import BillWithSettings from "./settings-bill.js";
+import moment from "moment";
 
 const app = express(); //instantiate app
 
@@ -51,7 +52,7 @@ app.post("/settings", function (req, res) {
 app.post("/action", function (req, res) {
   //capture record type
 
-  settingsBill.recordAction(req.body.actionType);
+  settingsBill.recordAction(req.body.actionType, moment());
   res.redirect("/");
 });
 app.get("/actions", function (req, res) {

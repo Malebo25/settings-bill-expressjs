@@ -35,7 +35,7 @@ export default function BillWithSettings() {
         actionList.push({
           type: action,
           cost,
-          timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+          timestamp: moment().format("YYYY-MM-DD HH:mm:ss a"),
         });
       }
     }
