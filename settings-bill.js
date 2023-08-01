@@ -23,18 +23,20 @@ export default function BillWithSettings() {
   }
 
   function recordAction(action) {
-    let cost = 0;
-    if (action === "sms") {
-      cost = smsCost;
-    } else if (action === "call") {
-      cost = callCost;
-    }
+    if (!hasReachedCriticalLevel()) {
+      let cost = 0;
+      if (action === "sms") {
+        cost = smsCost;
+      } else if (action === "call") {
+        cost = callCost;
+      }
 
-    actionList.push({
-      type: action,
-      cost,
-      timestamp: new Date(),
-    });
+      actionList.push({
+        type: action,
+        cost,
+        timestamp: new Date(),
+      });
+    }
   }
 
   function actions() {
