@@ -1,3 +1,4 @@
+import moment from "moment";
 export default function BillWithSettings() {
   let smsCost;
   let callCost;
@@ -30,12 +31,13 @@ export default function BillWithSettings() {
       } else if (action === "call") {
         cost = callCost;
       }
-
-      actionList.push({
-        type: action,
-        cost,
-        timestamp: new Date(),
-      });
+      if (cost > 0) {
+        actionList.push({
+          type: action,
+          cost,
+          timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+        });
+      }
     }
   }
 
@@ -87,12 +89,12 @@ export default function BillWithSettings() {
   }
 
   function totals() {
-    let smsTotal = getTotal("sms");
-    let callTotal = getTotal("call");
+    let smsTotal = getTotal("sms").toFixed(2);
+    let callTotal = getTotal("call").toFixed(2);
     return {
       smsTotal,
       callTotal,
-      grandTotal: grandTotal(),
+      grandTotal: grandTotal().toFixed(2),
     };
   }
 
