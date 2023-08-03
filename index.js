@@ -65,7 +65,7 @@ app.get("/actions/:actionType", function (req, res) {
   const allActions = settingsBill.actionsFor(actionType);
 
   const timeAgo = allActions.forEach((list) => {
-    list.timestamp = moment().startOf("hour").fromNow();
+    list.timestamp = moment().startOf("minute").fromNow();
   });
 
   res.render("actions", {
