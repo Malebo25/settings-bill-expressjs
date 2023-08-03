@@ -60,9 +60,18 @@ app.get("/actions", function (req, res) {
 });
 
 app.get("/actions/:actionType", function (req, res) {
-  //helps us display call or sms
   const actionType = req.params.actionType;
-  res.render("actions", { actions: settingsBill.actionsFor(actionType) });
+
+  const allActions = settingsBill.actionsFor(actionType);
+
+  const timeAgo = allActions.forEach((list) => {
+    list.timestamp = moment().startOf("hour").fromNow();
+  });
+
+  res.render("actions", {
+    actions: settingsBill.actionsFor(actionType),
+    timeAgo,
+  });
 });
 
 const PORT = process.env.PORT || 3002;
